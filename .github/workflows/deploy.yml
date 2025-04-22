@@ -1,0 +1,21 @@
+name: Deploy HTML to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的推送事件
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3 # 检查当前仓库代码
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3 # 部署到Github Pages上
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./  # 直接发布根目录的文件
+
